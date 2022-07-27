@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function myvalue(x,y){
+        let myvalue = (3 * 5);
+        alert('rhvijvndvnd')
+        document.getElementById('demo').innerHTML = myvalue;
+    }
+    function get(){
+       law =document.getElementById('law').value;
+       barister =document.getElementById('barister').value;
+       ans = Number(law) + Number(barister);
+       document.getElementById('ans').value = ans.toFixed(2);
+    }
+</script>
+<body>
+    <h1>Mathematics</h1>
+    <p>3 x 5</p>
+    <p id="demo"></p>
+    <button type="button" onclick="myvalue(3,5)">Submit button</button>
+
+    <h1>input Mathematics</h1>
+    <input type="number" id="law">
+    <input type="number" id="barister">
+    <input type="text" id="ans">
+
+    <button type="button" onclick="get()">submit button</button><br><br>
+
+
+    <button onclick="
+    document.body.style.background='black'
+    document.getElementById('images').src='./images/pic_bulbon.gif', alert('bulb on')
+    document.getElementById('semo').innerHTML ='The bulb is on'">bulb on
+
+    </button>
+
+    <img id="images" src="./images/pic_bulboff.gif" alt="">
+
+    <button onclick="
+    document.body.style.background='white'
+    document.getElementById('images').src='./images/pic_bulboff.gif', alert('bulb off')
+    document.getElementById('semo').innerHTML ='The bulb is off'">button
+
+    </button>
+    <h1 id="semo"></h1>
+
+</body>
+</html>

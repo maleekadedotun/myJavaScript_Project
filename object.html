@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Object</h1>
+
+
+
+    <script>
+        let user ={
+            name : ' Crystal',
+            age : 30,
+            email : 'crystal@thenetninja.co.uk',
+            location : 'berlin',
+            blogs : ['why mac & chese rules ', '10 things to make with marmite'],
+            
+            login: function(){
+               console.log('the user logged in');
+            },
+            logout: function(){
+             console.log('the user logged out');
+            },
+            logBlog :function(){
+                console.log(this);
+                console.log('this has writing the following blogs:');
+                this.blogs.forEach(blog => {
+                 console.log(blog);
+                })
+            }
+        }
+          console.log(this)
+        // user.login();
+        // user.logout();
+
+        user.logBlog();
+
+        const name ='mario';
+        name.toUpperCase();
+        console.log();
+        // console.log(user.name);
+        // console.log(user);
+        // console.log(user['location']);
+        // console.log(typeof user);
+
+        //maths  object
+
+        console.log(Math);
+        console.log(Math.PI);
+        console.log(Math.E);
+
+
+        const area =5.4 ;
+
+
+        console.log(Math.round(area));
+        console.log(Math.floor(area));
+        console.log(Math.ceil(area));
+        console.log(Math.trunc(area));
+
+
+        //random
+
+        
+        const random = Math.random();
+        console.log(random);
+        console.log(Math.round(random * 100));
+      
+
+    </script>
+</body>
+</html>

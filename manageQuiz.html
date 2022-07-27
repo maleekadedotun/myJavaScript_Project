@@ -1,0 +1,283 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage-Quiz</title>
+
+    <link rel="stylesheet" href="../boot/bootsrap.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    
+</head>
+<style>
+  a{
+    font-size: 25px;
+    color: white! important;
+    text-decoration: none! important;
+    text-align: center;
+  }
+  hr{
+    border-bottom: 2px dashed white;
+  }
+  .card1{
+    margin-top: 100px;
+  }
+  .ques, .option{
+    border: 2px solid green;
+  }
+  h5{
+   font-size: 40px;
+  }
+ .num{
+   text-align: center;
+ }
+ .card{
+   box-shadow: 5px 5px solid green;
+ }
+ a:hover{
+   background-color: green;
+   border-radius: 20px;
+ }
+ .logo{
+  text-shadow: 3px 3px 3px green;
+ }
+ 
+</style>
+<body class="bg-light">
+    <div class="col-12">
+        <div class="row">
+          <div class="col-md-3 mt-5 d-block  sidebar">
+            <a href="quizDashBar.html" class=" fa fa-tachometer d-block text-dark mb-3">Dashboard</a>
+            <a href="./category.html" class="d-block mb-3 text-dark ">Manage Category</a>
+            <a href="manageQuiz.html" class="d-block mb-3 active" style="background-color: green; border-radius: 15px! important;">Manage Quiz</a>
+            <a href="" class="d-block text-dark">Manage Activity</a>
+          </div>
+          <div class="col-md-9">
+            <nav class="navbar bg-success bg-white">
+              <h4 class="logo">My Logo</h4>
+             <!-- Example split danger button -->
+              <div class="btn-group ml-auto">
+                <!-- <button type="button" class="btn btn-danger">Action</button> -->
+                <i class="fas fa-user mt-2"></i>
+               
+              </div>
+              
+            </nav>
+           
+            <div class="mt- card1">
+              <hr>
+              <div class="row  bg-white ">
+                <div class="col-sm-4 text-center mt-4">
+                  <div class="card" style="border: 7px solid green;">
+                    <div class="card-body ">
+                      <h5 class="card-title" id="increment1">0</h5>
+                      <h3 class="card-text text-muted num">Total No. Of Categories.</h3>
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="col-sm-4 text-center mt-4">
+                  <div class="card" style="border: 7px solid green;">
+                    <div class="card-body">
+                      <h5 class="card-title" id="live">0</h5>
+                      <h3 class="card-text text-muted num">Total No. Of Live Quiz.</h3>
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="col-sm-4 text-center mt-4 card1">
+                  <div class="card" style="border: 7px solid green;">
+                    <div class="card-body" >
+                      <h5 class="card-title" id="notlive">0</h5>
+                      <h3 class="card-text text-muted num">Total No. Of Not-Live Quiz.</h3>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="mt-5"> -->
+                 
+                  <!-- <div class="ml-auto">
+                    <button class="btn btn-lg btn-light text mr-2 mb-3">Create Quiz</button>
+                  </div> -->
+                  <!-- </div> -->
+  
+                  <!-- <div class="ml-auto d-flex">
+                    <button class="btn btn-lg btn-light mt-3 text mr-2 mb-3" data-toggle="modal" data-target="#exampleModal">Create Quiz</button>
+                  </div> -->
+                <!-- </div> -->
+            </div>
+
+            <div class="mt-4 bg-light">
+              <div class="row">
+                <div class="col-9">
+                  <div class="row">
+                    <select class="custom-selectt ml-3" id="dropdown" aria-label="Example select with button addon" onchange="fetchData()">
+                      <option class="">Choose...</option>
+                    </select>
+                    <div class="ml-3">
+                      <input type="text" class="form-control" id="filterSearch" placeholder="" aria-label="Example text with button addon" onkeyup="fetchData()" aria-describedby="button-addon1">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3 ml-auto">
+                  <button class="btn btn-lg btn-success text mr-2 mb-3 ml-auto" data-toggle="modal" data-target="#exampleModal">Create Quiz</button>
+                </div>                     
+            </div>
+
+              <table border="2" style="width: 100%;">
+                <thead>
+                  <tr>
+                    <th>S/N</th>
+                    <th>Subject-Attend</th>
+                    <th>Quiz-Question</th>
+                    <th>Answer Input</th>
+                    <th>Correct Answer</th>
+                    <th>Icon</th>
+                  </tr>
+                </thead>
+                <tbody  id="tbody"></tbody>
+              </table>
+            </div>
+       </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl ">
+      <div class="modal-content bg-white">
+        <div class="modal-header">
+          <h5 class="modal-title " id="exampleModalLabel">Manage Quiz <i class="fas fa-graduation-cap"></i></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <label for="" class="">Number Of Question</label>
+          </div>
+          <div class="row">
+            <div class="col-6 input-group mb-3">
+            
+              <input type="number" class="form-control" id="input" placeholder="No of question" aria-label="Recipient's username" aria-describedby="button-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-dark text-white" type="button" id="button-addon2" onclick="setButton()">Button</button>
+              </div>
+            </div>
+  
+            <div class="col-6 input-group caategory">
+              <select class="custom-select" id="categoryFetch" placeholder="select subject" aria-label="Example select with button addon">
+                <option>General Language</option>
+              </select>
+             
+            </div>
+          </div>
+
+        
+          <div class="row" id="questionRow">
+
+          </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-lg" style="background-color: green;" data-dismiss="modal">Close</button>
+            <button type="button" class="btn text-white btn-lg" data-dismiss="modal" onclick="saveChanges()" style="background-color: green;">Save changes</button>
+          </div>
+        </div>
+    </div>
+
+
+    
+  </div>
+  <!-- editButton -->
+
+  <div class="modal fade" id="exampleMod" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content bg-white">
+        <div class="modal-header">
+          <h5 class="modal-title " id="exampleModalLabel">Manage Quiz<i class="fas fa-graduation-cap"></i></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="ml-3 mb-3 bg-ligt">
+            <form>
+              <div class="form-group">
+                <label for="" class="col-form-label-lg ">Question</label>
+                <textarea class="form-control text-success" style="resize: none;" id="textArea" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="" class="col-form-label-lg" id="">Number Of Option</label>
+                  <div class="">
+                    <select class="col" name="" id="setOption1" onchange ="generateOption(event)">
+                      <option selected>select option</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>
+                  </div>
+              </div>
+
+              <h4 class="text-center">Correct Answer</h4>
+              <div id="inputOption"></div>
+              <div id="inputRadio"></div>
+
+              <div>
+                <!-- <form action="">
+                 <div class="row">
+                  <div class="col-5 form-check">
+                    <input type="radio" id="customRadioInline1${i}${inp}" name="customRadioInline${inp}" value="FormInputGroup${i}${inp}" class="form-check-input${i + inp}">
+                    <span class="form-check-label" for="customRadioInline1">Option</span>
+                  </div>
+
+                  <div class="col-5 form-check">
+                    <input type="radio" id="customRadioInline1${i}${inp}" name="customRadioInline${inp}" value="FormInputGroup${i}${inp}" class="form-check-input${i + inp}">
+                    <span class="form-check-label" for="customRadioInline1">Option</span>
+                  </div>
+
+                  <div class="col-5 form-check">
+                    <input type="radio" id="customRadioInline1${i}${inp}" name="customRadioInline${inp}" value="FormInputGroup${i}${inp}" class="form-check-input${i + inp}">
+                    <span class="form-check-label" for="customRadioInline1">Option</span>
+                  </div>
+
+                  <div class="col-5 form-check">
+                    <input type="radio" id="customRadioInline1${i}${inp}" name="customRadioInline${inp}" value="FormInputGroup${i}${inp}" class="form-check-input${i + inp}">
+                    <span class="form-check-label" for="customRadioInline1">Option</span>
+                  </div>
+                 </div>
+                </form> -->
+              <div>
+    
+            
+            </div>
+    
+            </form>
+          
+            
+            
+    
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn text-success btn-lg bg-light"data-dismiss="modal">Close</button>
+          <button type="button" class="btn text-success btn-lg bg-light" data-dismiss="modal" onclick="upDateModal()">upDateButton</button>
+        </div>
+    </div>
+  </div>
+
+ <script src="./manageQuiz.js"></script>
+  <!-- jQuery library -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+</html>

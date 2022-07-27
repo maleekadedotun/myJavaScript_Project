@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../boot/bootsrap.css">
+
+    <style>
+        h2{
+            color: white;
+            text-align: center;
+        }
+        .total{
+            font-size: 30px;
+            color: white;
+            margin-left: 50px;
+        }
+        
+    </style>
+</head>
+<body>
+    
+ <div class="col-md-6 bg-success m-auto pb-5">
+    <h2 class="pt-3 mt-5">Shopping cart</h2>
+
+   <div class="col-12 bg-warning pb-5 ">
+     <div class="row">
+        <select class="custom-select col-6" id="Select02" onchange="selectclick(event)">
+          <option value="">select goods...</option>
+        </select>
+        <input class="col-6 " type="text" id="select01" disabled>
+        <label for="" class="total ">Total price</label>
+        <input disabled class="col-6 ml-3 " type="text" id="total"> 
+        <!-- Modal -->
+        <!-- Button trigger modal -->
+      
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary d" data-dismiss="modal" onclick="modal()">
+                 Update
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+       <button class="btn-success m-auto col-6 btn " id="list" type="button" onclick="cartButton()" id="click">ADD</button><br><br><br>
+     </div>     
+   </div>
+
+    <div id="cartItems">
+
+    </div>
+  </div>
+
+
+
+    
+  
+  <script>
+
+    let items = [
+        
+    {goods : 'Beverages', price : 200},
+    {goods : 'Cream', price : 700},
+    {goods : 'Snacks', price : 500},
+    {goods : 'Drinks', price : 300},
+    {goods : 'Whine', price : 1000},
+    ]
+    // console.log( items);
+
+    cartarr= []
+    var select = document.getElementById('Select02');
+    var select01 =document.getElementById('select01');
+    var totalPrice =document.getElementById('total').value;
+    // var exampleModal = document.getElementById('exampleModal');
+    var editIndex=""
+
+          
+    for (let i = 0; i < items.length; i++) {
+      select.innerHTML +=`<option value ="${items[i].goods}">${items[i].goods}</option>`
+    //    console.log(select.innerHTML);
+    }
+    
+
+    function selectclick(e) {
+      // var total =document.getElementById('total');
+      // var price =document.getElementById('select01').value =Number;
+      
+      if(e.target.value == ''){
+        return select01.value ='please select an item'
+      }
+      for (let index = 0; index < items.length; index++){
+       if(e.target.value == items[index].goods){
+          result = items[index].price
+          // console.log(result)
+        }
+           
+          
+      }
+      select01.value =result;
+
+      
+      function fetchdata() {
+      var totalPrice= Number();
+      cartItems.innerHTML = " "
+      cartItems.innerHTML =`
+        <div class="d-flex">
+          <div>S/N</div>
+          <div class="ml-auto">Items</div>
+          <div class="ml-auto">Price</div>
+          <div class="ml-auto">Icon</div>
+        </div>
+      `
+      for (let x = 0; x < cartarr.length; x++) {
+          
+         totalPrice.value +=Number(cartarr[x].price);
+        // console.log(cartarr[x].price);
+        cartItems.innerHTML +=`
+          <div class="d-flex mt-4 text-white">
+
+            <span class="ml-auto">${cartarr[x].goods}</span>
+            <span class="ml-auto">${"#" + cartarr[x].price}</span>
+            <span class="ml-auto fas fa-trash-alt" onclick="deleteTodo()"></span>
+            <span onclick="editTodo(${x})" class="fas fa-pen edit ml-3" data-toggle="modal" data-target="#exampleModal"></span>
+          </div>
+       `
+      }
+      console.log(totalPrice);
+      document.getElementById('total').value =totalPrice;
+    }
+        
+   fetchdata()
+
+    
+
+    function cartButton() {
+      let selectImput = document.getElementById("Select02").value;
+      let imputPrice = document.getElementById("select01").value;
+      // var totalPrice =document.getElementById('total').value;
+        
+      let merge ={ goods: selectImput, price: imputPrice}
+      // totalPrice =merge
+      if(selectImput == "" && imputPrice == ""){
+        alert('empty input')
+      }
+      else{
+        cartarr.push(merge) 
+        fetchdata() 
+      }
+    }     
+    function deleteTodo(ind) {
+      cartarr.splice(ind,1)
+      fetchdata()
+    }
+  }
+      
+
+    
+       
+ 
+  </script>
+   <script src= '../boot/jq.js'></script>
+</body>
+</html>

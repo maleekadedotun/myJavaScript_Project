@@ -1,0 +1,63 @@
+.ben{
+     border-bottom: 3px solid purple;
+}
+/* .own{
+     background-color: purple;
+} */
+.polaris{
+     color: purple! important;
+}
+table{
+     height: 50px;
+     border: 2px solid purple;
+}
+.holder{
+     border-top: none;
+     border-left: none;
+     border-right: none;
+     outline: none;
+}
+.hold{
+     border: none;
+}
+.narat{
+     border-top: none;
+     border-left: none;
+     border-right: none;
+     outline: none;
+}
+a{
+     text-decoration: none! important;
+}
+.con{
+     font-size: 30px! important;
+     color: white! important;
+}
+.cont1{
+     border: 2px solid purple;
+     margin: auto;
+     position: relative;
+
+}
+.sign{
+     background-color: purple;
+}
+.bell{
+/* float: right; */
+position: absolute;
+right: 5;
+padding-top: 50px;
+width: 15%;
+padding-right: 20px;
+/* padding-bottom: 80px; */
+}
+.img{
+/* position: absolute; */
+/* right: 50; */
+/* padding-left: 150px; */
+padding-top: 80px;
+padding-bottom: 50px;
+margin: auto;
+/* position: absolute;
+right: 100; */
+}

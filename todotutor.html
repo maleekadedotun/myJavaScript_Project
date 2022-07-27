@@ -1,0 +1,73 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+   .btn{
+       background-color: aqua;
+   }
+   table{
+       margin-top: 10px;
+       border-collapse: collapse;
+       width: 40%;
+   }
+    </style>
+</head>
+<body>
+    <h1>to-do-list</h1>
+
+    <input type="text" name="" id="input">
+    <button class="btn" type="button" onclick="list()">Add</button>
+
+    <table border="2">
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>Data</th>
+                <th>Icon</th>
+            </tr>
+        </thead>
+
+        <tbody id="table">
+
+        </tbody>
+       
+
+    <script>
+       
+       arr =[]
+        var table =document.getElementById('table');
+        var input =document.getElementById('input').value;
+
+        function list(params) {
+
+            var dev ={
+                name:input
+            }
+            arr.push(input)
+            table.innerHTML =''
+            for (let index = 0; index < array.length; index++) {
+              table.innerHTML +=`
+                <td>$</td>
+                <td></td>
+                <td></td>
+    </table>
+              `
+
+                
+            }
+
+            
+        }
+        
+           
+             
+                    
+        
+
+    </script>
+</body>
+</html>

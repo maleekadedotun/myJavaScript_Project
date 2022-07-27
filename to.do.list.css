@@ -1,0 +1,49 @@
+#table{
+    color: white;
+    text-align: center;
+}
+table{
+    width: 50%;
+    border-collapse: collapse;
+    border:  3px solid blue;
+    margin-top: 20px;
+    background-color: red;
+}
+#list{
+  margin-top: 20px;
+  background-color: blue;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+  border: none;
+}
+.myDiv{
+  background-color: red;
+  margin-top: 30px;
+}
+.input1{
+  width: 60%;
+  height: 42px;
+}
+li{
+  list-style-type: none;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+ol{
+  background-color: lightgray;
+}
+.list{
+  margin-top: 20px;
+  background-color: blue;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+  border: none;
+  margin-bottom: 50px;
+  margin-left: -5px;
+  width: 30%;
+}
+
+/* w3s todo */
+

@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="to.do.list.css">
+    <!-- <link rel="stylesheet" href="to.do.list.js"> -->
+    <style>
+        .d {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>To do list</h1>
+
+    <input type="text" placeholder="Add list" name="text" id="todo">
+    <button onclick="myList()" id="list">Add</button>
+    <button class="d" onclick="udate()" id="udate">Update</button>
+
+    <table border="">
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>Todo</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="table">
+            
+        </tbody>
+    </table>
+
+
+<!-- w3s todo -->
+
+<div class="myDiv">
+    <input type="text" class="input1" placeholder="title.....">
+    <button onclick="list()" class="list">AddButton</button>
+</div>
+
+<ol>
+<li>Hit the gym</li>
+<li class="checked">Pay bills</li>
+<li>Meet Goerge</li>
+<li class="checked">Buy Eggs</li>
+<li>Reda a book</li>
+<li class="checked">Oganize Office</li>
+</ol>
+
+
+
+   <script src="to.do.list.js"></script>
+</body>
+</html>

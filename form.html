@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+     <link rel="stylesheet" href="Tutorial.css">
+     <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <div class="form">
+        <form name="myForm" action="#" method="post" id="form">
+            <h1>FORM VALIDATION</h1>
+
+            <label>Full Name</label>
+            <input class="name" id="name" type="text" required><br><br>
+
+            <label>Address</label>
+            <input class="address" type="text" required ><br>
+
+            <label>Password</label>
+            <input class="state" id="password" type="password" required><br>
+
+            <label>Confirm Password</label>
+            <input class="password" type="password" id="password1" required><br><br>
+
+            <h1 id="malik"></h1>
+         
+           <button id="button" type="button" onclick="validateForm()">Submit</button>
+        </form>
+       
+    </div>
+
+
+    <script src="form.js"></script>
+</body>
+</html>

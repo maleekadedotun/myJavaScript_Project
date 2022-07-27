@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../boot/bootsrap.css">
+    <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
+
+    <style>
+      body{
+        background-color: gold;
+        background-image: linear-gradient(to right,gold, green);
+      }
+    </style>
+</head>
+<body>
+    <div class="col-md-6 bg-success m-auto pb-5">
+      <p id="demo" style="font-size: 60px;"></p>
+        <h2 class="pt-5 mt-5 text-white text-center">Shopping cart</h2>
+    
+       <div class="col-12 bg-warning pb-5 ">
+         <div class="row">
+            <select class="custom-select col-6" id="Select02" onchange="selectItem(event)">
+              <option value="">select goods...</option>
+            </select>
+            <input class="col-6 " type="text" id="select01" disabled>
+            <label for="" class="total ">Total price</label>
+            <input disabled class="col-6 ml-3 " type="text" id="total"> 
+            <!-- Modal -->
+            <!-- Button trigger modal -->
+        
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Items</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                   <div class="row">
+                      <select class="custom-select col-6" id="Select03" onchange="selectItem2(event)">
+                        <option value="">select goods...</option>
+                      </select>
+                      <input class="col-6 " type="text" id="Select04" disabled>
+                   </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-success d" data-dismiss="modal" onclick="modalUpdate()">
+                     Update
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+           <button class="btn-success m-auto col-6 btn " id="list" type="button" onclick="cartButton()" id="click">ADD</button><br><br><br>
+         </div>     
+       </div>
+    
+        <div id="cartItems">
+    
+        </div>
+      </div>
+
+      <script>
+
+        var inputData =[]
+        var inputGoods = document.querySelector('#Select02');
+        var inputPrice = document.querySelector('#select01');
+        var cartItems = document.querySelector('#cartItems');
+        var totalPrice = document.querySelector('#total');
+        var selectModal = document.querySelector('#Select03');
+        var inputModal = document.querySelector('#Select04');
+        var demo = document.querySelector('#demo');
+        var updateIndex = ""
+
+        let items = [
+        
+        {goods : 'Beverages', price : 200, quantity: ""},
+        {goods : 'Cream', price : 700, quantity: ""},
+        {goods : 'Snacks', price : 500, quantity: ""},
+        {goods : 'Drinks', price : 300, quantity: ""},
+        {goods : 'Whine', price : 1000, quantity: ""},
+
+        ]
+       
+
+        for (let i = 0; i < items.length; i++) {
+          inputGoods.innerHTML +=`<option value="${items[i].goods}">${items[i].goods}</option>`;
+          selectModal.innerHTML +=`<option value="${items[i].goods}">${items[i].goods}</option>`
+        }
+
+       
+
+        function selectItem(e){
+          pricelist =''
+          for (let y = 0; y < items.length; y++) {
+            if(e.target.value == items[y].goods){
+              // console.log(items[y].goods);
+              pricelist = items[y].price;
+            }
+          }
+          inputPrice.value = pricelist
+          // console.log(inputPrice);
+        }
+
+        
+      
+
+        function cartButton(){
+          var localStorageData = JSON.parse(localStorage.getItem('items'))
+
+          var merge = {
+            id: Math.floor(Math.random() * 100000),
+            goods: inputGoods.value, 
+            price: inputPrice.value, 
+            quantity: 1
+          
+          }
+
+          duplicateStatus = false;
+          let arr = []
+
+          if (localStorageData == null){
+            arr.push(merge)
+            localStorage.setItem("items", JSON.stringify(arr))
+          }
+          else{
+            for (let y = 0; y < localStorageData.length; y++) {
+              if(inputGoods.value == localStorageData[y].goods){
+                duplicateStatus = true
+              }
+            }
+
+            if (inputGoods.value =='' && inputPrice.value =='') {
+              alert('Select an item');
+            } 
+            else if (duplicateStatus){
+              alert("duplicate item detected")
+            }
+            else{
+              localStorageData.push(merge)
+              localStorage.setItem('items',JSON.stringify(localStorageData))
+            }
+          }
+          fetchData()
+        }
+        //fetchData()
+
+
+        function fetchData() {
+          var price =Number()
+          cartItems.innerHTML=""
+          cartItems.innerHTML =`
+            <div class=" d-flex pb-4">
+              <div>S/N</div>
+              <div class="ml-auto">Item</div>
+              <div class="ml-auto">Price</div>
+              <div class="ml-auto">Quantity</div>
+              <div class="ml-auto">Icon</div>
+              
+              
+            </div>
+          `
+          var localStorageData = JSON.parse(localStorage.getItem("items")) || null;
+          if(localStorageData != null){
+            // console.log(localStorageData);
+            for (let i = 0; i < localStorageData.length; i++) {
+              price += Number(localStorageData[i].price)
+              cartItems.innerHTML +=`
+                <div class="d-flex text-white pb-4">
+                  <div>${i + 1}</div>
+                  <div class="ml-auto">${localStorageData[i].goods}</div>
+                  <div class="ml-auto">${localStorageData[i].price}</div>
+                  <div class="ml-auto">
+                    <i class="fas fa-minus-square" onclick="decrement(${localStorageData[i].id})"></i>
+                    ${localStorageData[i].quantity}
+                    <i class="fas fa-plus-square" onclick="increment(${localStorageData[i].id})"></i>
+
+                  </div>
+                  <div class="ml-auto">
+                    <i class="ml-auto fas fa-trash-alt" onclick="deleteTodo(${i})"></i>
+                    <i onclick="editTodo(${localStorageData[i].id})" class="fas fa-pen edit ml-3" data-toggle="modal" data-target="#exampleModal"></i>
+                  </div>
+                </div>
+              `
+            }
+            totalPrice.value = price
+            // document.setItem("items", JSON.stringify(localStorageData)) 
+          }
+        }
+    fetchData()
+    
+    //deleteTodo
+    function deleteTodo(ind){
+      swal({
+        title: "Are you sure?",
+        text: "Item will be deleted from cart",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+      .then((willDelete) => {
+        if(willDelete){
+          var localStorageData = JSON.parse(localStorage.getItem("items"))
+          if(localStorageData){
+            localStorageData.splice(ind, 1);
+            localStorage.setItem("items", JSON.stringify(localStorageData))
+            console.log(localStorageData)
+          }
+        
+          swal("Item Deleted!",{
+            icon: "success",
+          });
+          fetchData()
+        }
+
+        else{
+          fetchData()
+          swal("Item still in cart!")
+        }
+      });
+      
+    }
+    
+
+       
+
+    function selectItem2(e){
+      pricelist =''
+      for (let y = 0; y < items.length; y++) {
+        if(e.target.value == items[y].goods){
+          pricelist = items[y].price;
+        } 
+      }
+      inputModal.value = pricelist
+      fetchData()
+    }
+
+      //editTodo
+    function editTodo(params) {
+      var localStorageData = JSON.parse(localStorage.getItem('items'))
+
+      updateIndex = params;
+      let obj =""
+      for (let z = 0; z < localStorageData.length; z++) {
+        if (localStorageData[z].id == params) {
+          obj = localStorageData[z]      
+          console.log(obj);    
+        }
+      }
+      selectModal.value = obj.goods;
+      inputModal.value = obj.price;
+      
+      localStorage.setItem('items', JSON.stringify(localStorageData))
+      fetchData()
+    }
+
+    function modalUpdate() {
+      console.log(modalUpdate);
+
+      var localStorageData = JSON.parse(localStorage.getItem('items'))
+     
+      if ( selectModal.value == "" || inputModal.value == "") {
+        alert('input must not be empty')
+      }
+      else{
+        for (let index = 0; index < localStorageData.length; index++) {
+          if (localStorageData[index].id == updateIndex) {
+            localStorageData[index].goods = selectModal.value 
+            localStorageData[index].price = inputModal.value 
+          }
+        }
+      //  selectModal.value = "";
+      //  inputModal.value = "";
+      }   
+      localStorage.setItem('items', JSON.stringify(localStorageData))
+      fetchData()
+    }
+
+    function increment(inc) {
+      var localStorageData = JSON.parse(localStorage.getItem('items'))
+
+      for (let i = 0; i < localStorageData.length; i++) {
+        if (localStorageData[i].id == inc) {
+          localStorageData[i].quantity++;
+          console.log(localStorageData[i]);
+
+          let actualprice = items.find(el => el.goods == localStorageData[i].goods).price;
+          localStorageData[i].price = Number(localStorageData[i].price) + Number(actualprice)
+        }
+       
+      }
+      localStorage.setItem('items', JSON.stringify(localStorageData))
+      fetchData()
+    }
+
+    function decrement(dec) {
+      var localStorageData = JSON.parse(localStorage.getItem('items'))
+      
+        for (let i = 0; i < localStorageData.length; i++) {
+        if (localStorageData[i].id == dec && localStorageData[i].quantity > 1) {
+          localStorageData[i].quantity--;
+
+          let actualprice =items.find(el => el.goods ==localStorageData[i].goods).price;
+          localStorageData[i].price= Number(localStorageData[i].price) - Number(actualprice)
+        }
+      }
+      localStorage.setItem('items', JSON.stringify(localStorageData))
+      fetchData()
+    }
+
+    let authName = JSON.parse(localStorage.getItem("authName"))
+    if (authName) {
+      demo.innerHTML = `Welcome${authName.name}`
+    }
+    else{
+      window.location.assign("cartSignUp.html")
+    }
+
+    
+
+        
+  </script>
+
+
+
+
+  <script src= '../boot/jq.js'></script>
+  <!-- jQuery library -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</body>
+</html>

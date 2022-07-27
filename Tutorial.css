@@ -1,0 +1,72 @@
+.name{
+width: 50%;
+height: 40px;
+margin-left: 140px;
+}
+.address{
+    width: 50%;
+    height: 40px;
+    margin-left: 170px;
+}
+.state{
+    width: 50%;
+    height: 40px;
+    margin-top: 20px;
+    margin-left: 160px;
+}
+.password{
+    width: 50%;
+    height: 40px;
+    margin-top: 20px;
+    margin-left: 50px;
+}
+label{
+font-size: 30px;
+margin-left: 20px;
+color: aliceblue;
+}
+button{
+width: 50%;
+height: 40px;
+margin-left:300px;
+background-color: blue;
+border-radius: 30px;
+border: none;
+}
+.form{
+border: 3px solid blue;
+width: 50%;
+margin: auto;
+background-color: darkgoldenrod;
+margin-top: 150px;
+}
+h1{
+text-align: center;
+color: aliceblue;
+}
+
+
+table{
+    /* border: 2px solid black; */
+    width: 70%;
+    height: 200px;
+    margin-top: 50px;
+    border-collapse: collapse;
+
+}
+
+.table1{
+    width: 70%;
+    margin: auto;
+   margin-top: 70px; 
+}
+.cont{
+    border: 2px solid black;
+}
+.evenOrOdd{
+    background-color: navy;
+    color: aliceblue;
+    font-size: 20px;
+    height: 40px;
+    border: none;
+}

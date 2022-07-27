@@ -1,0 +1,210 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../boot/bootsrap.css">
+    <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
+
+</head>
+<body>
+    <div class="col-md-6 bg-primary m-auto pb-5">
+        <h2 class="pt-5 mt-5 text-white text-center">Shopping cart</h2>
+    
+       <div class="col-12 bg-light grey pb-5 ">
+         <div class="row">
+            <select class="custom-select col-6" id="Select02" onchange="selectItem(event)">
+              <option value="">select goods...</option>
+            </select>
+            <input class="col-6 " type="text" id="select01" disabled>
+            <label for="" class="total ">Total price</label>
+            <input disabled class="col-6 ml-3 " type="text" id="total"> 
+            <!-- Modal -->
+            <!-- Button trigger modal -->
+        
+    
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Items</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                   <div class="row">
+                      <select class="custom-select col-6" id="Select03" onchange="selectItem2(event)">
+                        <option value="">select goods...</option>
+                      </select>
+                      <input class="col-6 " type="text" id="Select04" disabled>
+                   </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-success d" data-dismiss="modal" onclick="modalUpdate()">
+                     Update
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+           <button class="btn-success m-auto col-6 btn " id="list" type="button" onclick="cartButton()" id="click">ADD</button><br><br><br>
+         </div>     
+       </div>
+    
+        <div id="cartItems">
+    
+        </div>
+      </div>
+
+      <script>
+          var items =[
+              {goods: "Biscuit", price: 100},
+              {goods: "Melon", price: 300},
+              {goods: "Carpet", price: 800},
+              {goods: "Bevaerages", price: 1000},
+              {goods: "Iphone", price: 2000},
+          ]
+          var array =[]
+          var editIndex =''
+          var inputGoods = document.querySelector('#Select02')
+          var inputPrice = document.querySelector('#select01');
+          var total = document.querySelector('#total');
+          var cartItems = document.querySelector('#cartItems');
+          var selectModal = document.querySelector('#Select03');
+          var inputModal = document.querySelector('#Select04');
+          
+
+         for (let i = 0; i < items.length; i++) {
+           inputGoods.innerHTML += `<option value ="${items[i].goods}">${items[i].goods}</option>`
+           selectModal.innerHTML +=`<option value ="${items[i].goods}">${items[i].goods}</option>`
+         }
+
+         function selectItem(event) {
+          var pricelist =''
+           for (let y = 0; y < items.length; y++) { 
+             if (event.target.value == items[y].goods) {
+               pricelist =items[y].price
+              }
+            }
+            inputPrice.value =pricelist
+            console.log(inputPrice);
+         }
+        
+        function cartButton() {
+         var merge = {goods: inputGoods.value, price: inputPrice.value}
+           duplicateStatus = false
+
+          for (let y = 0; y < array.length; y++) {
+            if (inputGoods.value == array[y].goods) {
+              duplicateStatus = true
+            }
+          }
+            if (inputGoods.value =='' && inputPrice.value =='') {
+           alert('Select an item')
+         }
+         else if (duplicateStatus) {
+           alert('duplicate item detected')
+         }
+         else{
+           array.push(merge)
+         }
+          
+        
+         fetchData()
+        }
+
+        function fetchData() {
+          var price =Number()
+          cartItems.innerHTML = ''
+          cartItems.innerHTML =`
+            <div class="d-flex">
+              <div>S/N</div>
+              <div class="ml-auto">Items</div>
+              <div class="ml-auto">Price</div>
+              <div class="ml-auto">Icon</div>
+            </div>
+          `
+
+          for (let i = 0; i < array.length; i++) {
+            price +=Number(array[i].price)
+            cartItems.innerHTML +=`
+            <div class="d-flex">
+              <div>${i+1}</div>
+              <div class="ml-auto">${array[i].goods}</div>
+              <div class="ml-auto">${array[i].price}</div>
+              <div class="ml-auto">
+                <span class="fas fa-trash-alt" onclick="deleteTodo()"></span>
+                <span class="fas fa-pen" onclick="editTodo(${i})"  data-toggle="modal" data-target="#exampleModal"></span>
+                </div>
+            </div>
+            `
+
+          }
+          total.value =price
+        }
+        fetchData()
+
+        function deleteTodo(del) {
+          array.splice(del,1)
+          fetchData()
+        }
+
+        function editTodo(params) {
+          editIndex =params
+          ans = ''
+          for (let y = 0; y < array.length; y++) {
+          if (y == params ) {
+            ans = array[y];
+          }            
+          }
+          selectModal.value = ans.goods
+          inputModal.value = ans.price
+          fetchData()
+        }
+
+        function selectItem2(event) {
+          var pricelist =''
+          for (let y = 0; y < items.length; y++) { 
+            if (event.target.value == items[y].goods) {
+             pricelist = items[y].price
+            }
+          }
+         inputModal.value = pricelist
+         fetchData()
+        }
+
+        function modalUpdate(params) {
+          if (selectModal.value == "" && inputModal.value == "") {
+            alert('empty input')
+          }
+          for (let i = 0; i < array.length; i++) {
+            if (array[i] == ) {
+              index
+            }
+          }
+        }
+        
+       
+      </script>
+
+<script src= '../boot/jq.js'></script>
+<!-- jQuery library -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
+
+</body>
+</html>

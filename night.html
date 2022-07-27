@@ -1,0 +1,94 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var dev1 = 'world';
+        // var dev2 = 'earth';
+        // var dev3 = 'moon';
+        // var dev4 = 'sun';
+
+        // console.log(dev1  + dev2)
+
+        var dev1 = 'tiger';
+        var dev2 = 'animal';
+        var dev3 = 'lion'
+        var dev4 = 'zebra';
+
+        let dev5 = 'goat'
+        let dev6 = 'dog'
+
+        // const dev7 = 'fish', dev9 = 'fish', dev710 = 'fish';
+        // const dev8 = 'meat';
+
+        // console.log(dev3);
+        // console.log(dev8)
+
+        function mike(x,y){
+            let myvalue = dev4 + ' '+dev3;
+            return (myvalue)
+
+        }
+
+        let myvalue = mike(dev1,dev2);
+        console.log(myvalue)
+
+        let num1 = 2
+        let num2 = 3
+        let num3 = 3
+
+        function value(a,b){
+            let my= a + b;
+            let alpha = my + num3
+            return (alpha)          
+        }
+        let alpha = value (num1,num2,num3)
+        console.log(alpha)
+
+    </script>
+
+    <!-- <button>The time is</button> -->
+      <p id="demo"></p>
+
+
+    <script>
+        //Event name, Callback function, Your reaction
+    //  let button =document.querySelector('button');
+    //   button.addEventListener('mouseover', function(){
+    //   document.getElementById('demo').innerHTML = Date();
+    //  })
+    //  button.addEventListener('mouseout', function(){
+    //   document.getElementById("demo").innerHTML = '';
+    //  })
+   
+     let button = document.querySelectorAll('.button');
+    //  i =0, 0 < 3, {}, i +=1= 1
+    //  i =1, 1 < 3, {}, i +=1= 2
+    //  i =2, 2 < 3, {}, i +=1= 3
+    //  i =3, 3 < 3, {}, i +=1= 3
+
+    //  for(let i =0; i < buttons.length; i++){
+    //     buttons[i].addEventListener('mouseover',function(){
+    //     })
+    //  }
+    
+    // button.addEventListener('mouseover',function () {
+        
+        // })
+        function mouse() {
+          document.getElementById('self').innerHTML = 777;
+        
+    }
+     
+    </script>
+     
+    <button class="button" onmouseenter="mouse()">Click me</button>
+    <button class="button">Click me too</button>
+    <button class="button">And me</button>
+    <p id="self"></p>
+</body>
+</html>

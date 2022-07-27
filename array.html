@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="demo"></h1>
+       <h1 id="demo2"></h1>
+      <p id="crech"></p>
+      <input type="button" onclick="myfunction()" value="Submit">
+      <p id="demo3"></p>
+      <input type="button" onclick="myFunction()" value="submit Buton">
+    <script>
+
+        const aray =[' love', ' football',' i']
+        document.getElementById("demo").innerHTML = aray [2] + aray[0] + aray[1];
+        console.log(aray[2], aray[0], aray[1])
+
+
+       
+        function myfunction(name){
+
+            let names =['Cabana', ' Malik', ' Adebayo', ' Sam', 'Mimee']
+
+            for(let i =0; i < names.length; i++){
+                if(names[i] ==name){
+                    console.log(names[i])
+                    demo2.innerHTML =names;
+                }
+            }
+       }
+      myfunction('Mimee')
+
+
+
+ 
+        //  document.getElementById("demo3").innerHTML = points;  
+
+            function myFunction() {
+                const points = [40, 100, 1, 5, 25, 10];
+
+                for (let i = points.length -1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * i)
+                    // console.log(j);
+                    let k = points[i]
+                    points[i] = points[j]
+                    points[j] = k
+                }
+                document.getElementById("demo3").innerHTML = points;
+                // console.log(points[j])
+            }
+            myFunction()
+
+    </script>
+</body>
+</html>

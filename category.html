@@ -1,0 +1,259 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category</title>
+  
+  <link rel="stylesheet" href="../boot/bootsrap.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+  <style>
+    .card{
+      box-shadow: 10px 10px green;
+      box-sizing: border-box;
+    }
+    h5{
+      text-align: center;
+      font-size: 40px;
+    }
+    table{
+      
+      width: 100%;
+    }
+    a{
+      color: #000! important;
+      font-size: 20px;
+      text-decoration: none! important;
+    }
+      li:hover{
+      background-color: green;
+      border-radius: 5rem;
+      padding: 16px;
+    }
+   
+    li{
+      list-style: none;
+      text-align: center;
+
+    }
+    .thead{
+      color: white;
+    }
+    .logo{
+      text-shadow: 3px 3px white;
+    }
+    .user{
+      font-size: 20px;
+    }
+    .footer{
+      margin-top: 200px;
+    }
+  </style>
+
+
+</head>
+<body class="bg-light">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-3 sidebar" style="margin-top: 6rem;">
+        <li><a href="quizDashBar.html" class="pt-5">Dashboard</a></li> 
+        <li  style="background-color: green; border-radius: 5rem;"><a href="" class=" active">Manage Category</a></li>
+        <li class=""> <a href="manageQuiz.html" class=" mb-3">Manage Quiz</a></li>
+        <li><a href="" class="mb-5">Manage Activity</a></li> 
+      </div>
+      <div class="col-9">
+        <nav class="navbar bg-">
+          <h4 class="logo">My Logo</h4>
+         <!-- Example split danger button -->
+          <div class="btn-group ml-auto">
+            <!-- <button type="button" class="btn btn-danger">Action</button> -->
+            <i class="fas fa-user mt-2 user"></i>
+            <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Profile</a>
+              <a class="dropdown-item" href="#">Edit</a>
+              <a class="dropdown-item" href="#">View</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Log-Out</a>
+            </div>
+            <!-- <button  data-toggle="modal" data-target="#exampleModal" tabindex="-1" class="btn btn-lg mr-3 btn-dark fas fa-plus ml-auto" type="button">
+              Create New Quiz
+            </button> -->
+          </div>
+          
+        </nav>
+        <!-- <button  data-toggle="modal" style="float: right;" data-target="#exampleModal" tabindex="-1" class="btn ml-auto btn-lg mr-3 btn-dark fas fa-plus ml-auto" type="button">
+          Create New Quiz
+        </button> -->
+        <div class="mt-5">
+          <div class="row">
+            <div class="col-sm-4 text-center">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title" id="increment1">0</h5>
+                  <h4 class="card-text text-muted">Total No. Of Categories.</h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-4 text-center">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title" id="live">0</h5>
+                  <h4 class="card-text text-muted">Total No. Of Live <br>Quiz.</h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-4 text-center ">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title" id="notlive">0</h5>
+                  <h4 class="card-text text-muted">Total No. Of Not-Live Quiz.</h4>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="col-sm-3">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">30</h5>
+                  <p class="card-text"></p>
+                </div>
+              </div>
+            </div> -->
+          </div>
+          
+          <div class="ml-auto">
+            <button  data-toggle="modal" data-target="#exampleModal" tabindex="-1" class="btn btn-lg mr-3 btn-dark fas fa-plus  mt-5" type="button">
+              Create New Quiz
+            </button>
+          </div>
+         
+
+          <div class="mt-5 bg-dark">
+            <table border="1" class="thead mt-4">
+              <thead class="thead">
+                <tr>
+                  <th>S/N</th>
+                  <th>Name</th>
+                  <th>UserType</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+    
+              <tbody id="tbody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class=" footer">
+          <div class="col-md-12 bg-light" >
+            <marquee behavior="" direction=""><h6>&copy;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dotman Tech, the best solution to your website</h6></marquee>
+          </div>
+        </div>
+      </div>
+
+      
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title fas fa-graduation-cap " id="exampleModalLabel">DashBoard</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                <form>
+                  
+                  <div class="form-group row">
+                    <label for="colFormLabel" class="col-sm-2 col-form-label ">Category</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="colFormLabel" placeholder="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Status</label>
+                    <select name="" id="colFormLabelLg">
+                      <option value="">select option</option>
+                    </select>
+                  </div>
+                </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary"  data-dismiss="modal" onclick="saveButton()">Save changes</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
+       <!-- EDITModal -->
+       <div class="modal fade" id="example" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title fas fa-graduation-cap " id="exampleModalLabel">DashBoard</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            <form>
+              
+              <div class="form-group row">
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Category</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="modalCategory" placeholder="">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Status</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control form-control-lg" id="modalStatus" placeholder="">
+                </div>
+              </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary"  data-dismiss="modal" onclick="upDate()">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+    
+    
+  </div>
+
+  <script src="category.js"></script>
+
+  <script>
+
+  
+
+  </script>
+
+  <script src= '../boot/jq.js'></script>
+  <!-- <script src= '../boot/jq.js'></script> -->
+  <!-- jQuery library -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+</html>

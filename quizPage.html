@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Page</title>
+
+    <link rel="stylesheet" href="../boot/bootsrap.css">
+
+</head>
+<body class="bg-light">
+  <h2 class="text-center">Quiz Section</h2>
+
+   <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="form-group display-4 append">
+           <!-- <label for="display-1 exampleFormControlTextarea1">Question field</label> -->
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="resize: none;"></textarea>
+        </div>
+
+        <form>
+          <div class="row">
+            <div class="col input-group-prepend">
+              <label for="">A</label>
+              <input type="text" class="form-control ml-3" placeholder="First name">
+            </div>
+            <div class="col input-group-prepend">
+              <label for="">B</label>
+              <input type="text" class="form-control ml-3" placeholder="Last name">
+            </div>
+          </div>
+
+          
+          <div class="mt-3">
+            <div class="row">
+              <div class="col input-group-prepend">
+              <label for="">C</label>
+                <input type="text" class="form-control ml-3" placeholder="First name">
+              </div>
+              <div class="col input-group-prepend">
+              <label for="">D</label>
+                <input type="text" class="form-control ml-3" placeholder="Last name">
+              </div>
+            </div>
+          </div>
+        
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var user = JSON.parse(localStorage.getItem("user"))
+    for (let i = 0; i < user.length; i++) {
+      if (user !== null) {
+        
+        
+      }
+    }
+  </script>
+  
+</body>
+</html>
