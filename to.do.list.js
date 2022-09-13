@@ -5,16 +5,28 @@ let editIndex ="";
 
 function myList(){
     var todo = document.getElementById('todo').value;
+    var status = false
     var tod = {
         name: todo
     }
     if(todo ==''){
         alert('fill in the input')
     }
-    else{
-        arr.push(tod);
-        fetchData()
-    }
+    // else{
+        
+    //     for (let i = 0; i < arr.length; i++) {
+    //         if (todo == arr[i].name) {
+    //             status = true
+    //         }
+    //         if (status) {
+    //             alert("Duplicate entry dectected")
+    //         }
+            else{
+                arr.push(tod);
+            }
+    //     }
+    // }
+    fetchData()
 
 }
 
@@ -27,8 +39,8 @@ function fetchData(params){
             <td><h2>${i + 1}</h2></td>
             <td><h2>${arr[i].name}</h2></td>
             <td>
-            <i onclick="deletetodo(${i})" class="fas fa-trash-alt delete" style="color: white; font-size:20x; cursor:pointer"></i>
-            <i onclick="editTodo(${i})" class="fas fa-pen edit" style="color: white; font-size:20x; cursor:pointer"></i>
+            <i onclick="deletetodo(${i})" class="fas fa-trash-alt delete" style="color: white; font-size:20x; cursor:pointer">Delete</i>
+            <i onclick="editTodo(${i})" class="fas fa-pen edit" style="color: white; font-size:20x; cursor:pointer">Edit</i>
                    
             </td>
         </tr>

@@ -50,7 +50,6 @@ function questionView() {
   
         if(filteredRelatedQuiz.length) quizez.push(filteredRelatedQuiz)
         // console.log(filteredRelatedQuiz);
-        //console.log(quizez);        
         
       }
     }
@@ -70,7 +69,7 @@ function questionView() {
                   <h1 class="card-text" style="float: right;">${quizez[i].length}</h1>  
                 </div>
                 </div>    
-                <button class="btn btn-success btn-lg" onclick="takeQuiz()">Take-Quiz</button>
+                <button class="btn btn-success btn-lg" onclick="takeQuiz(${i})">Take-Quiz</button>
               </div>
             </div>
           </div>
@@ -81,22 +80,28 @@ function questionView() {
 }
 
 function takeQuiz(take) {
-  var users = JSON.parse(localStorage.getItem("users"));
-  let loginStatus = false
-  users.some((el, y ) =>{
+  var usersDetails = JSON.parse(localStorage.getItem("users"));
+  loginStatus = false
+usersDetails.some(el =>{
     if (el.email || el.password || el.phoneNo) {
       loginStatus = true
       authName = el
     }
     if (loginStatus) {
-      let Empty = []
-      quizez.forEach(element => {
-        if (element == take) {
-          window.location.assign("quizPage.html")
+      let quizData = []
+      quizez.forEach((element, i) => {
+        if(i == take) {
+          quizData = element
         }
+        // console.log(take);
+        // console.log(quizData);
       });
-    }
-  })  
-  localStorage.setItem("quiz", JSON.stringify(quizez))
+      localStorage.setItem("quiz", JSON.stringify(quizData))
+      // console.log(quizData);
+       window.location.assign("quizPage.html")
+    } 
+  });
+
+  
   
 }

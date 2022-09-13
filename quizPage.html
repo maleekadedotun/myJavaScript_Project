@@ -10,53 +10,62 @@
 </head>
 <body class="bg-light">
   <h2 class="text-center">Quiz Section</h2>
+  <div id="cards"></div>
+   
+<div class="col-6 m-auto pb-3">
+  <button class="btn btn-lg btn-success btn-block  border-dark" type="submit" onclick="totalMArk()">Submit</button>
 
-   <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <div class="form-group display-4 append">
-           <!-- <label for="display-1 exampleFormControlTextarea1">Question field</label> -->
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="resize: none;"></textarea>
-        </div>
-
-        <form>
-          <div class="row">
-            <div class="col input-group-prepend">
-              <label for="">A</label>
-              <input type="text" class="form-control ml-3" placeholder="First name">
-            </div>
-            <div class="col input-group-prepend">
-              <label for="">B</label>
-              <input type="text" class="form-control ml-3" placeholder="Last name">
-            </div>
-          </div>
-
-          
-          <div class="mt-3">
-            <div class="row">
-              <div class="col input-group-prepend">
-              <label for="">C</label>
-                <input type="text" class="form-control ml-3" placeholder="First name">
-              </div>
-              <div class="col input-group-prepend">
-              <label for="">D</label>
-                <input type="text" class="form-control ml-3" placeholder="Last name">
-              </div>
-            </div>
-          </div>
-        
-        </form>
-      </div>
-    </div>
-  </div>
-
+</div>
   <script>
-    var user = JSON.parse(localStorage.getItem("user"))
-    for (let i = 0; i < user.length; i++) {
-      if (user !== null) {
-        
-        
+    var quiz = JSON.parse(localStorage.getItem("quiz"))
+    let myCard = document.getElementById("cards")
+    myCard.innerHTML =""
+    for (let i = 0; i < quiz.length; i++) {
+
+      let Answers = quiz[i].answer.map(el => {
+        return el.ade
+      })
+      console.log(Answers);
+
+      myCard.innerHTML +=
+      `
+        <div class="col-sm-8 m-auto">
+          <div class="card mb-5">
+            <div class="card-body">
+              <div class="form-group display-4 append">
+                <!-- <label for="display-1 exampleFormControlTextarea1">Question field</label> -->
+                <textarea disabled class="form-control font-weight-bold" id="exampleFormControlTextarea1" rows="3" style="resize: none;">${quiz[i].question}</textarea>
+                <input type="hidden" id="numberOfOptions" value="${Answers.length}">
+              </div>
+
+              <form>
+                <div class="row"  id="options${i}">
+                  
+                </div>
+              
+              </form>
+            </div>
+          </div>
+        </div>
+      `
+
+    let options = document.getElementById(`options${i}`)
+      if(quiz[i].id){
+        for(let i = 0; i < Answers.length; i++){
+          options.innerHTML += `
+            <div class="col-6 mb-4 input-group-prepend">
+              <label for="">${i + 1}</label>
+              <span><input disabled type="text" id="ans" class="form-control ml-3" placeholder="First name" value="${Answers[i]}"></span>
+            </div>
+          `
+        }
       }
+    }
+    
+
+    function totalMArk() {
+      let quiz = JSON.parse(localStorage.getItem("quiz"))
+    
     }
   </script>
   

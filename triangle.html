@@ -1,0 +1,94 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="triangle" style="border: 1px solid black;">ggggg</div>
+
+    <script>
+        // programming Quiz: Build A Triangle(5-3)
+
+        // Create a line of * for a given length
+
+        // function makeLine(length) {
+        //     var line = ""
+        //     for (let i = 1; i < length; i++) {
+        //         line +="*";
+        //     }
+        //     return line +="\n";
+        // }
+        // console.log(line);
+        // makeLine()
+
+        var i;
+        function leftTriangle(rows){
+            let result = '';
+            for(let i=rows;i>0;i--){
+                // console.log([i]);
+                if(i===rows) {
+                result += '*'.repeat(i) + '\n';
+                }else{
+                let empty = rows-i
+                result+= ' '.repeat(empty) + '*'.repeat(i)+ '\n'
+                }
+            }
+            return result;
+        }
+document.getElementById("triangle").innerHTML = leftTriangle(5)
+console.log(leftTriangle(5))
+
+var line = ''
+
+function triangle() {
+    var k = ''
+    var j=""
+    for ( j = 1; j <= 5; j++) {
+
+        for (let k = 0; k < 1; k++) {
+            // console.log([k]);
+            
+            line += '*'
+            //  console.log(line);
+
+        }
+        for (let a = 0; a < k; k++) {
+            console.log(k[a]);
+            document.write('<br/>')
+            
+        }
+        console.log(line);
+       z
+    }
+    
+}
+//  console.log(triangle());
+ triangle()
+        
+        
+        // function makeLine(length) {
+        //     var line = "";
+        //     for (var j = 1; j <= length; j++) {
+        //     line += "*";
+        //     }
+        //     return line + "\n";
+        // }    
+        
+        
+        // function triangle(){
+        // let array =[]
+
+        // let x = 10
+
+        //     for (let i = 0; i < x; i++) {
+        //           array += makeLine(i)       
+        //     }
+        
+        //     return x   
+        // }
+        // console.log(triangle());
+    </script>
+</body>
+</html>

@@ -13,28 +13,54 @@ function signUp() {
         cPassWord : cPassWord.value,
         userType : 'user'
     }
-        arr = []
+    let arr = []    
 
     if (fullName.value == "" || phoneNo.value == "" || email.value =="" ||  password.value == "" || cPassWord.value =="") {
-        swal(' Input cannot be empty')
+        alert(' Input cannot be empty')
     }
     else if(password.value != cPassWord.value){
-        swal('Invalid Password')
+       alert('Invalid Password')
     }
     else{
         if (localStorage.getItem('users') == null) {
             arr.push(data)
         }
         else{
-            arr = JSON.parse(localStorage.getItem('users'))
+          arr = JSON.parse(localStorage.getItem("users"))
+          // console.log(arr);
+          const even = (el) => el.email === data.email;
             if (arr.some(el => el.email == data.email)) {
-                return alert('Email already exist');
+              return  alert('Email already exist');
             }
             arr.push(data)
+            // console.log(arr);
         }
-        localStorage.setItem('users', JSON.stringify(arr))
+        localStorage.setItem("users", JSON.stringify(arr))
         window.location.assign('quizLogin.html')
 
     }
-   
+
 }
+
+if(localStorage.getItem('users') == null) {
+    localStorage.setItem('users', JSON.stringify([{
+      fullName: "Admin",
+      email: "admin@admin.com",
+      phoneNo: 08141687496,
+      password: 123456789,
+      userType: 'admin'
+    }]))
+  } else {
+    let records = JSON.parse(localStorage.getItem('users'));
+
+    if(records.some(el => el.email.toLowerCase() == 'admin@admin.com' || el.fullName.toLowerCase() == 'admin') == false) {
+      records.push({
+        fullName: "Admin",
+        email: "admin@admin.com",
+        phoneNo: 08141687496,
+        password: 123456789,
+        userType: 'admin'
+      })
+    }
+    localStorage.setItem('users', JSON.stringify(records))
+  }
